@@ -15,17 +15,25 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
     }
 
-    private void Update()
+    private Vector3 CalculateMovementDirection()
     {
-        var forward = _camera.transform.forward;
-        var right = _camera.transform.right;
+        var cameraTransform = _camera.transform;
+        var forward = cameraTransform.forward.normalized;
+        var right = cameraTransform.right.normalized;
         forward.y = 0;
         right.y = 0;
         var movementDir = (forward * Input.GetAxis("Vertical")) + (right * Input.GetAxis("Horizontal"));
-        movementDir.Normalize();
+        movementDir *= Speed;
+        movementDir += Physics.gravity;
+        return movementDir;
+    }
+
+    private void Update()
+    {
+        var movementDir = transform.TransformDirection(CalculateMovementDirection());
         if (movementDir != Vector3.zero)
         {
-            _characterController.Move(movementDir * Time.deltaTime * Speed);
+            _characterController.Move(movementDir * Time.deltaTime);
         }
     }
 }
