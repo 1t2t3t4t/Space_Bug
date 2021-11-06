@@ -26,9 +26,12 @@ public class CameraController : MonoBehaviour
         
         movement.x *= -1;
         movement.z = 0;
-        movement.y = Mathf.Clamp(movement.y, -80, 80);
-        var adjustedMovement = movement * Time.deltaTime * MouseSpeed;
-        currentTransform.rotation = Quaternion.Euler(currentTransform.rotation.eulerAngles + adjustedMovement);
+        var adjustedMovement = currentTransform.rotation.eulerAngles + (movement * Time.deltaTime * MouseSpeed);
+        if (adjustedMovement.x >= 70 && adjustedMovement.x < 90)
+            adjustedMovement.x = 70;
+        else if (adjustedMovement.x >= 90 && adjustedMovement.x <= 290)
+            adjustedMovement.x = 290;
+        currentTransform.rotation = Quaternion.Euler(adjustedMovement);
         currentTransform.position = target - currentTransform.forward * 5;
     }
 }
