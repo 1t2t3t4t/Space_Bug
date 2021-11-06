@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
         
         movement.x *= -1;
         movement.z = 0;
-        movement.y = Mathf.Clamp(movement.y, -90, 90);
+        movement.y = Mathf.Clamp(movement.y, -80, 80);
         var adjustedMovement = movement * Time.deltaTime * MouseSpeed;
         currentTransform.rotation = Quaternion.Euler(currentTransform.rotation.eulerAngles + adjustedMovement);
         currentTransform.position = target - currentTransform.forward * 5;
