@@ -32,8 +32,8 @@ public class PlayerAttack : MonoBehaviour
         var bullet = Instantiate(BulletPrefab);
         bullet.transform.position = GunFlash.transform.position;
         bullet.transform.rotation = Quaternion.LookRotation(aimDir);
-        Debug.Log(aimDir.normalized);
         bullet.GetComponent<Rigidbody>().velocity = aimDir.normalized * CurrentWeapon.BulletSpeed;
+        Destroy(bullet, 10);
         GunFlash.Play();
     }
 }
