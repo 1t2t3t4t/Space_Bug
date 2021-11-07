@@ -60,8 +60,9 @@ public class PlayerController : MonoBehaviour
     private void TurnPlayer()
     {
         var forwardDir = _camera.transform.forward;
-        var targetRotation = Quaternion.FromToRotation(Vector3.forward, forwardDir);
+        var targetRotation = Quaternion.LookRotation(forwardDir);
         targetRotation.x = 0;
+        targetRotation.z = 0;
         ModelTransform.rotation = Quaternion.Slerp(ModelTransform.rotation, targetRotation, Time.deltaTime * TurnSpeed);
     }
 
