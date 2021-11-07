@@ -9,7 +9,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            
+            GunFlash.Play();
         }
     }
 }
