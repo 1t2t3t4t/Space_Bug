@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
     public Transform Target;
 
     public float MouseSpeed = 100;
+    public float Distance = 5;
 
     private static Vector3 MouseMovement =>
         new Vector3
@@ -32,6 +33,6 @@ public class CameraController : MonoBehaviour
         else if (adjustedMovement.x >= 90 && adjustedMovement.x <= 290)
             adjustedMovement.x = 290;
         currentTransform.rotation = Quaternion.Euler(adjustedMovement);
-        currentTransform.position = target - currentTransform.forward * 5;
+        currentTransform.position = target - currentTransform.forward * Distance;
     }
 }
